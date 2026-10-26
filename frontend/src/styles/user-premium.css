@@ -1,0 +1,1509 @@
+
+/* ==========================================
+   PHÚ GIA ROYAL PARK — USER ONLY
+
+   Thiết kế map-first.
+   Không banner/chữ trang trí.
+   Không ảnh hưởng Agent và Admin.
+========================================== */
+
+.pg-user-shell {
+  --ux-green: #183e32;
+  --ux-ink: #172b25;
+  --ux-muted: #7b8a81;
+  --ux-line: #e5eae6;
+  --ux-bg: #f4f7f5;
+
+  min-height: 100vh;
+  background: var(--ux-bg);
+  color: var(--ux-ink);
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+.pg-user-shell * {
+  box-sizing: border-box;
+}
+
+.pg-user-shell button,
+.pg-user-shell input,
+.pg-user-shell select {
+  font: inherit;
+}
+
+.pg-user-shell button {
+  cursor: pointer;
+}
+
+.pg-user-shell button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.pg-user-shell
+:is(button, input, select, a):focus-visible {
+  outline: 3px solid #91b4a0;
+  outline-offset: 2px;
+}
+
+.pg-user-shell a {
+  text-decoration: none;
+}
+
+/* ==========================================
+   THANH TRÊN NHỎ GỌN
+
+   KHÔNG LOGO CHỮ PG
+   KHÔNG HERO BANNER
+========================================== */
+
+.pg-user-shell .ux-header {
+  position: sticky;
+  z-index: 60;
+  top: 0;
+
+  background: #fff;
+  border-bottom: 1px solid var(--ux-line);
+
+  box-shadow:
+    0 3px 18px rgba(27, 58, 42, 0.035);
+}
+
+.pg-user-shell .ux-header-inner {
+  width: min(1660px, calc(100% - 48px));
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 68px;
+  gap: 18px;
+}
+
+.pg-user-shell .ux-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  color: var(--ux-green);
+  min-width: 0;
+}
+
+.pg-user-shell .ux-brand-symbol {
+  width: 38px;
+  height: 38px;
+
+  background: #edf3ef;
+  color: #205a44;
+
+  border-radius: 11px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+}
+
+.ux-brand-symbol svg {
+  width: 25px;
+  height: 25px;
+}
+
+.ux-brand-text {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ux-brand-text strong {
+  letter-spacing: 0.035em;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ux-brand-text small {
+  font-size: 10px;
+  color: #87958b;
+}
+
+.ux-account {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+  min-width: 0;
+}
+
+.ux-account-name {
+  font-size: 12px;
+  color: #586d61;
+
+  max-width: 210px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pg-user-shell .ux-logout {
+  border: 1px solid #dbe5dc;
+
+  background: #fff;
+  border-radius: 9px;
+
+  padding: 9px 14px;
+
+  color: #315745;
+  font-weight: 700;
+  font-size: 12px;
+
+  white-space: nowrap;
+
+  transition: background 0.2s;
+}
+
+.pg-user-shell .ux-logout:hover {
+  background: #f1f5f0;
+}
+
+/* ==========================================
+   KHU VỰC ỨNG DỤNG
+========================================== */
+
+.pg-user-shell .ux-main {
+  width: min(1660px, calc(100% - 48px));
+
+  margin: 0 auto;
+  padding: 25px 0 38px;
+}
+
+.pg-user-shell .ux-page {
+  min-width: 0;
+}
+
+/* THANH CÔNG CỤ */
+
+.ux-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ux-eyebrow {
+  display: block;
+
+  color: #819186;
+
+  letter-spacing: 0.105em;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.ux-toolbar-title h1 {
+  font-size: clamp(21px, 2.25vw, 28px);
+
+  margin: 5px 0 0;
+
+  color: #1c4033;
+  font-weight: 750;
+
+  letter-spacing: -0.035em;
+}
+
+.ux-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.pg-user-shell .ux-toolbar-actions select {
+  padding: 10px 12px;
+
+  background: white;
+
+  border: 1px solid var(--ux-line);
+  color: #375849;
+
+  border-radius: 9px;
+  font-size: 12px;
+  max-width: 220px;
+}
+
+.pg-user-shell .ux-refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  background: #fff;
+  color: #28533d;
+
+  border: 1px solid #d7e3da;
+  border-radius: 9px;
+
+  padding: 10px 14px;
+
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+
+  transition:
+    background 0.18s,
+    border-color 0.18s;
+}
+
+.pg-user-shell .ux-refresh:hover:not(:disabled) {
+  background: #eaf3ed;
+  border-color: #abcbb5;
+}
+
+/* ==========================================
+   BỘ LỌC PHÂN KHU
+========================================== */
+
+.ux-zones {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 11px;
+  margin-bottom: 14px;
+}
+
+.pg-user-shell .ux-zone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 0;
+  min-height: 62px;
+  gap: 9px;
+
+  padding: 13px 17px;
+
+  border: 1px solid #e2eae4;
+
+  background: #fff;
+
+  border-radius: 13px;
+  text-align: left;
+
+  color: #375348;
+
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.pg-user-shell .ux-zone:hover {
+  transform: translateY(-2px);
+
+  border-color: #adc9b6;
+
+  box-shadow:
+    0 7px 20px rgba(19, 65, 39, 0.055);
+}
+
+.pg-user-shell .ux-zone.active {
+  color: #fff;
+
+  background: #204b3a;
+  border-color: #204b3a;
+
+  box-shadow:
+    0 8px 24px rgba(25, 67, 46, 0.12);
+}
+
+.ux-zone-name {
+  font-size: 15px;
+  font-weight: 750;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ux-zone-count {
+  font-weight: 750;
+  font-size: 12px;
+
+  background: #f1f5f2;
+  border-radius: 8px;
+
+  padding: 5px 9px;
+
+  color: #597365;
+
+  min-width: 30px;
+  text-align: center;
+}
+
+.ux-zone.active .ux-zone-count {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.ux-zone-ruby {
+  box-shadow: inset 3px 0 0 #b97676;
+}
+
+.ux-zone-sapphire {
+  box-shadow: inset 3px 0 0 #6c9fad;
+}
+
+.ux-zone-crystal {
+  box-shadow: inset 3px 0 0 #c7ac73;
+}
+
+.ux-zone.active {
+  box-shadow: none;
+}
+
+/* ==========================================
+   THANH TRẠNG THÁI CĂN
+========================================== */
+
+.ux-statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  padding: 8px 2px 15px;
+}
+
+.ux-status-location {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #2e5845;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.ux-status-location span {
+  margin-left: 4px;
+
+  background: #e7efe9;
+  color: #547761;
+
+  padding: 4px 8px;
+
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+.ux-status-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 19px;
+}
+
+.ux-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #68796c;
+  font-size: 11px;
+}
+
+.ux-status strong {
+  color: #385747;
+  font-size: 11px;
+}
+
+.ux-dot {
+  width: 10px;
+  height: 10px;
+
+  border: 1px solid #bac5ba;
+  border-radius: 3px;
+
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.ux-dot.available {
+  background: #fff;
+}
+
+.ux-dot.not-open {
+  background: #f6d96b;
+  border-color: #e0c669;
+}
+
+.ux-dot.sold {
+  background: #f4a7a7;
+  border-color: #e49a9a;
+}
+
+/* ==========================================
+   BẢN ĐỒ LỚN + PANEL BÊN PHẢI
+========================================== */
+
+.ux-workspace {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr) 390px;
+
+  align-items: start;
+
+  gap: 15px;
+}
+
+.ux-map-panel,
+.ux-side-panel {
+  min-width: 0;
+
+  background: #fff;
+
+  border: 1px solid #e0e8e2;
+  border-radius: 15px;
+
+  box-shadow:
+    0 9px 32px rgba(24, 57, 39, 0.042);
+
+  overflow: hidden;
+}
+
+/* TIÊU ĐỀ BẢN ĐỒ */
+
+.ux-panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+  padding: 16px 19px;
+}
+
+.ux-panel-heading > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ux-panel-heading strong {
+  color: #214a35;
+  font-size: 15px;
+}
+
+.ux-panel-heading span {
+  color: #91a096;
+  font-size: 11px;
+}
+
+.ux-outline-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 7px 10px;
+
+  border: 1px solid #d7e7da;
+
+  background: #f1f8f2;
+  border-radius: 8px;
+
+  color: #508264 !important;
+
+  white-space: nowrap;
+
+  font-size: 10px !important;
+  font-weight: 700;
+}
+
+/* BẢN ĐỒ MAPCANVAS */
+
+.ux-map-surface {
+  margin: 0 12px;
+}
+
+.ux-map-surface .canvas-frame {
+  border-radius: 10px;
+  border: 1px solid #e5eae4;
+  box-shadow: none;
+}
+
+.ux-map-surface .map-controls {
+  background: #f8faf8;
+
+  border-color: #e6ebe6;
+
+  padding: 10px 13px;
+}
+
+.ux-map-surface .control-buttons .btn {
+  border-radius: 8px;
+  padding: 7px 11px;
+}
+
+.ux-map-surface .canvas-area {
+  height: clamp(520px, 68vh, 860px);
+
+  min-height: 520px;
+
+  background: #eef1eb;
+}
+
+.ux-map-surface .canvas-footer {
+  font-size: 11px;
+  background: #fff;
+}
+
+.ux-map-hint {
+  font-size: 10.5px;
+  color: #91a096;
+
+  padding: 13px 17px 16px;
+}
+
+/* ==========================================
+   SIDEBAR DANH SÁCH CĂN
+========================================== */
+
+.ux-side-top {
+  padding: 19px 18px 5px;
+}
+
+.ux-side-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.ux-side-heading h2 {
+  color: #214a37;
+  font-size: 21px;
+
+  margin: 5px 0 0;
+
+  letter-spacing: -0.03em;
+}
+
+.ux-result-count {
+  flex-shrink: 0;
+
+  background: #eaf3eb;
+  color: #447d56;
+
+  padding: 7px 10px;
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 750;
+}
+
+/* Ô TÌM KIẾM */
+
+.ux-search {
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+  padding: 0 13px;
+
+  border: 1px solid #dfe8e1;
+  border-radius: 10px;
+
+  color: #84998a;
+  background: #f9fbf9;
+}
+
+.ux-search:focus-within {
+  border-color: #8bb69a;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px #eaf3ec;
+}
+
+.pg-user-shell .ux-search input {
+  border: 0;
+
+  min-width: 0;
+  width: 100%;
+
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+
+  color: #254632;
+  font-size: 12px;
+
+  padding: 11px 0;
+}
+
+/* DANH SÁCH */
+
+.ux-unit-list {
+  overflow-y: auto;
+  max-height: 280px;
+
+  margin-top: 12px;
+
+  padding-right: 2px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d0dcd2 transparent;
+}
+
+.ux-unit-group {
+  margin-bottom: 12px;
+}
+
+.ux-group-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+  padding: 10px 2px;
+}
+
+.ux-group-heading span {
+  font-size: 12px;
+  font-weight: 800;
+
+  color: #3b6149;
+}
+
+.ux-group-heading small {
+  font-size: 10px;
+  color: #97a59b;
+}
+
+.pg-user-shell .ux-unit {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  width: 100%;
+  padding: 9px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  background: #fff;
+  color: #7d8d81;
+
+  text-align: left;
+
+  transition:
+    border-color 0.18s,
+    background 0.18s;
+}
+
+.pg-user-shell .ux-unit + .ux-unit {
+  margin-top: 4px;
+}
+
+.pg-user-shell .ux-unit:hover {
+  background: #f2f7f3;
+  border-color: #dbe9dd;
+}
+
+.pg-user-shell .ux-unit.selected {
+  background: #eaf4eb;
+  border-color: #9ec3a8;
+  color: #23553a;
+}
+
+.ux-unit-mark {
+  width: 35px;
+  height: 35px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  color: #4a7a5a;
+  background: #eaf2eb;
+
+  border-radius: 9px;
+}
+
+.ux-unit-body {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  min-width: 0;
+}
+
+.ux-unit-body strong {
+  font-size: 12px;
+  color: #244532;
+
+  overflow-wrap: anywhere;
+}
+
+.ux-unit-body small {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 10px;
+  color: #8b9a8d;
+}
+
+.ux-unit-body .ux-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+}
+
+.ux-empty-result,
+.ux-sold-hint {
+  font-size: 11px;
+  color: #8d9e91;
+
+  line-height: 1.6;
+
+  margin: 4px 2px 10px;
+}
+
+.ux-sold-hint {
+  color: #b17f7e;
+}
+
+/* ==========================================
+   THÔNG TIN CHI TIẾT CĂN
+========================================== */
+
+.ux-detail {
+  border-top: 1px solid #e9eee9;
+
+  padding: 18px;
+
+  background: #fdfefd;
+}
+
+.ux-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #2c543e;
+  font-size: 13px;
+}
+
+.pg-user-shell .ux-detail-head button {
+  width: 30px;
+  height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  background: #f4f7f4;
+
+  border: 1px solid #e0e8e1;
+  border-radius: 8px;
+
+  color: #718779;
+}
+
+/* KHI CHƯA CHỌN CĂN */
+
+.ux-detail-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  gap: 9px;
+
+  min-height: 206px;
+  padding: 17px 22px;
+}
+
+.ux-detail-illustration {
+  width: 57px;
+  height: 57px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 16px;
+
+  background: #edf4ee;
+  color: #6d9880;
+
+  margin-bottom: 3px;
+}
+
+.ux-detail-empty strong {
+  font-size: 14px;
+  color: #315641;
+}
+
+.ux-detail-empty p {
+  margin: 0;
+
+  line-height: 1.6;
+  font-size: 11px;
+
+  color: #899c8e;
+  max-width: 280px;
+}
+
+/* KHI ĐÃ CHỌN CĂN */
+
+.ux-detail-body {
+  margin-top: 15px;
+}
+
+.ux-detail-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ux-detail-name > div {
+  min-width: 0;
+}
+
+.ux-detail-name > div > span {
+  color: #9da99d;
+
+  letter-spacing: 0.07em;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.ux-detail-name h3 {
+  margin: 5px 0 0;
+
+  font-size: 22px;
+  color: #173e2c;
+
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+
+.ux-pill {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  border-radius: 7px;
+
+  background: #e8f4e9;
+  color: #386f46;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  padding: 7px 9px;
+}
+
+.ux-pill.not-open {
+  background: #fff5dc;
+  color: #906d29;
+}
+
+.ux-pill.sold {
+  background: #ffebeb;
+  color: #a66060;
+}
+
+/* BẢNG THÔNG TIN */
+
+.ux-information {
+  margin-top: 8px;
+}
+
+.ux-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  gap: 16px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid #edf0ed;
+
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.ux-info-item > span {
+  color: #819287;
+  max-width: 52%;
+}
+
+.ux-info-item > strong {
+  color: #2d513c;
+  font-weight: 750;
+
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* KẾT CẤU */
+
+.ux-description {
+  margin-top: 16px;
+}
+
+.ux-description > strong {
+  color: #385b44;
+  font-size: 12px;
+}
+
+.ux-description > p {
+  margin: 8px 0;
+
+  white-space: pre-wrap;
+
+  color: #748777;
+
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* GIÁ VÀ THANH TOÁN */
+
+.ux-prices {
+  margin-top: 15px;
+
+  border-radius: 11px;
+  border: 1px solid #e0ebe0;
+
+  background: #f4f9f4;
+
+  padding: 13px;
+}
+
+.ux-prices h4 {
+  margin: 0 0 7px;
+
+  font-size: 12px;
+  color: #2c5a3d;
+}
+
+.ux-prices .ux-info-item:last-child {
+  border-bottom: 0;
+}
+
+.ux-micro {
+  font-size: 10px;
+  color: #95a397;
+
+  line-height: 1.6;
+  margin: 15px 0 0;
+}
+
+.ux-no-image {
+  padding: 13px;
+
+  border: 1px dashed #d5e1d7;
+
+  color: #94a499;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  border-radius: 9px;
+  font-size: 11px;
+}
+
+/* ==========================================
+   THƯ VIỆN ẢNH CĂN
+========================================== */
+
+.ux-gallery {
+  margin: 14px 0;
+}
+
+.ux-gallery-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 9px;
+}
+
+.ux-gallery-heading strong {
+  font-size: 11px;
+  color: #41644b;
+}
+
+.ux-gallery-heading span {
+  color: #8a9b8d;
+  font-size: 10px;
+}
+
+.ux-gallery-view {
+  position: relative;
+
+  background: #edf1ed;
+
+  min-height: 196px;
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pg-user-shell .ux-gallery-main {
+  display: block;
+  position: relative;
+
+  width: 100%;
+
+  border: 0;
+  padding: 0;
+
+  background: transparent;
+}
+
+.ux-gallery-main img {
+  display: block;
+
+  width: 100%;
+  height: 223px;
+
+  object-fit: contain;
+}
+
+.ux-gallery-main > span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  border-radius: 7px;
+  padding: 8px 10px;
+
+  background: rgba(15, 43, 29, 0.84);
+  color: #fff;
+
+  font-size: 10px;
+}
+
+.pg-user-shell .ux-gallery-arrow {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  height: 32px;
+  width: 32px;
+
+  border: 0;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255, 255, 255, 0.93);
+  color: #245039;
+
+  box-shadow: 0 2px 10px #0002;
+}
+
+.ux-prev {
+  left: 9px;
+}
+
+.ux-next {
+  right: 9px;
+}
+
+.ux-image-error {
+  height: 223px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 11px;
+  color: #768a7b;
+}
+
+.ux-thumbnails {
+  display: flex;
+  gap: 7px;
+
+  overflow-x: auto;
+
+  padding: 9px 0 3px;
+}
+
+.pg-user-shell .ux-thumbnails button {
+  flex: 0 0 64px;
+
+  height: 54px;
+
+  padding: 2px;
+
+  border: 2px solid transparent;
+  border-radius: 8px;
+
+  background: #e9efe9;
+
+  overflow: hidden;
+}
+
+.pg-user-shell .ux-thumbnails button.active {
+  border-color: #438b5b;
+}
+
+.ux-thumbnails img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* ==========================================
+   PHÓNG TO ẢNH TOÀN MÀN HÌNH
+========================================== */
+
+.ux-lightbox {
+  position: fixed;
+  inset: 0;
+
+  z-index: 200;
+
+  background: rgba(10, 23, 16, 0.95);
+
+  display: grid;
+  place-items: center;
+
+  padding: 17px;
+}
+
+.ux-lightbox-panel {
+  max-width: 1050px;
+  width: 100%;
+
+  color: #fff;
+  text-align: center;
+}
+
+.ux-lightbox-head,
+.ux-lightbox-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 14px;
+}
+
+.pg-user-shell .ux-lightbox button {
+  background: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid #ffffff47;
+
+  color: #fff;
+  border-radius: 8px;
+
+  padding: 9px 12px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+}
+
+.ux-lightbox-panel > img {
+  max-width: 100%;
+  max-height: 76vh;
+
+  object-fit: contain;
+}
+
+.ux-lightbox-bottom {
+  margin-top: 13px;
+  margin-bottom: 0;
+
+  justify-content: center;
+}
+
+/* ==========================================
+   TRẠNG THÁI ĐANG TẢI
+========================================== */
+
+.ux-state {
+  min-height: 340px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+
+  border-radius: 14px;
+  border: 1px solid var(--ux-line);
+
+  color: #315846;
+}
+
+.ux-state p {
+  margin: 0;
+
+  font-size: 12px;
+  color: #829586;
+}
+
+.ux-spinner {
+  width: 28px;
+  height: 28px;
+
+  border: 3px solid #dfeee3;
+  border-top-color: #34744b;
+
+  border-radius: 50%;
+
+  animation:
+    ux-spin 0.75s linear infinite;
+}
+
+@keyframes ux-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE LAPTOP
+========================================== */
+
+@media (max-width: 1180px) {
+  .ux-workspace {
+    grid-template-columns:
+      minmax(0, 1fr) 350px;
+  }
+
+  .ux-map-surface .canvas-area {
+    height: 68vh;
+    min-height: 500px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE TABLET
+========================================== */
+
+@media (max-width: 960px) {
+  .ux-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .ux-side-panel {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+  .ux-side-top {
+    min-width: 0;
+  }
+
+  .ux-detail {
+    border-top: 0;
+    border-left: 1px solid var(--ux-line);
+
+    min-width: 0;
+  }
+
+  .ux-map-surface .canvas-area {
+    height: min(65vh, 690px);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+  .pg-user-shell .ux-header-inner,
+  .pg-user-shell .ux-main {
+    width: calc(100% - 26px);
+  }
+
+  .pg-user-shell .ux-header-inner {
+    min-height: 62px;
+  }
+
+  .ux-brand-text strong {
+    font-size: 11px;
+  }
+
+  .ux-brand-text small,
+  .ux-account-name {
+    display: none;
+  }
+
+  .pg-user-shell .ux-logout {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .pg-user-shell .ux-main {
+    padding-top: 18px;
+  }
+
+  .ux-toolbar {
+    margin-bottom: 15px;
+  }
+
+  .ux-toolbar-title h1 {
+    font-size: 22px;
+  }
+
+  .ux-zones {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+  }
+
+  .pg-user-shell .ux-zone {
+    min-height: 54px;
+    padding: 11px 12px;
+  }
+
+  .ux-zone-name {
+    font-size: 13px;
+  }
+
+  .ux-statusbar {
+    align-items: flex-start;
+  }
+
+  .ux-status-list {
+    gap: 11px;
+  }
+
+  .ux-map-surface .canvas-area {
+    height: 430px;
+    min-height: 360px;
+  }
+
+  .ux-panel-heading {
+    padding: 14px;
+  }
+
+  .ux-panel-heading > div > span {
+    display: none;
+  }
+
+  .ux-side-panel {
+    display: block;
+  }
+
+  .ux-detail {
+    border-top: 1px solid var(--ux-line);
+    border-left: 0;
+  }
+
+  .ux-unit-list {
+    max-height: 340px;
+  }
+}
+
+/* ==========================================
+   ĐIỆN THOẠI MÀN HÌNH NHỎ
+========================================== */
+
+@media (max-width: 385px) {
+  .ux-brand-symbol {
+    width: 33px;
+    height: 33px;
+  }
+
+  .ux-brand-symbol svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .ux-brand-text strong {
+    font-size: 10px;
+  }
+
+  .ux-outline-badge {
+    display: none;
+  }
+
+  .ux-refresh span {
+    display: none;
+  }
+
+  .ux-map-surface .map-controls {
+    padding: 8px;
+  }
+}
+
+/* ==========================================
+   HẠN CHẾ HIỆU ỨNG KHI NGƯỜI DÙNG YÊU CẦU
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-user-shell *,
+  .pg-user-shell *::before,
+  .pg-user-shell *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

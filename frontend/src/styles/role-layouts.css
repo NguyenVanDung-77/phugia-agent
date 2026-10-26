@@ -1,0 +1,775 @@
+
+/* ========================================
+   KHU VỰC USER – GIAO DIỆN KHÁCH HÀNG
+======================================== */
+
+.pg-user-shell {
+  min-height: 100vh;
+  background: #f5f7f2;
+}
+
+.pg-user-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e9de;
+  min-height: 86px;
+  padding: 15px max(22px, calc((100vw - 1680px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pg-user-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pg-user-monogram {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #163d2d;
+  color: #f2d79c;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.pg-user-brand strong,
+.pg-user-brand span {
+  display: block;
+}
+
+.pg-user-brand strong {
+  color: #173e2d;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 0.025em;
+}
+
+.pg-user-brand span {
+  margin-top: 4px;
+  color: #8b956e;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.pg-user-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pg-user-nav a {
+  display: block;
+  padding: 11px 16px;
+  border-radius: 8px;
+  color: #305741;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.pg-user-nav a.active,
+.pg-user-nav a:hover {
+  background: #ecf3eb;
+  color: #194b35;
+}
+
+.pg-user-profile {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.pg-user-greeting {
+  max-width: 170px;
+  font-size: 12px;
+  color: #64776a;
+  overflow-wrap: anywhere;
+}
+
+.pg-user-profile button {
+  padding: 10px 13px;
+  border: 1px solid #d7e2d6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #255139;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pg-user-profile button:hover {
+  background: #edf3ec;
+}
+
+.pg-user-hero {
+  background:
+    radial-gradient(
+      circle at 87% 20%,
+      rgba(230, 205, 142, 0.2),
+      transparent 36%
+    ),
+    linear-gradient(
+      115deg,
+      #143e2e,
+      #205b41 65%,
+      #327452
+    );
+  color: #ffffff;
+}
+
+.pg-user-hero-inner {
+  max-width: 1680px;
+  margin: auto;
+  padding: 43px max(22px, 2%) 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.pg-user-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.19em;
+  font-weight: 800;
+  color: #e8d297;
+  margin: 0 0 13px;
+}
+
+.pg-user-hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(26px, 3.2vw, 41px);
+  line-height: 1.16;
+  margin: 0;
+  font-weight: 600;
+}
+
+.pg-user-hero-description {
+  margin: 14px 0 0;
+  color: #d9e9dd;
+  line-height: 1.7;
+  font-size: 13px;
+  max-width: 850px;
+}
+
+.pg-user-hero-aside {
+  min-width: 155px;
+  padding: 16px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 16px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.pg-user-hero-aside span {
+  font-family: Georgia, serif;
+  display: block;
+  font-size: 42px;
+  line-height: 1;
+  color: #eed79c;
+}
+
+.pg-user-hero-aside small {
+  display: block;
+  margin-top: 11px;
+  color: #e0e9df;
+  font-size: 9px;
+  letter-spacing: 0.035em;
+}
+
+.pg-user-main {
+  padding-top: 28px;
+}
+
+.pg-user-footer {
+  padding: 27px 16px;
+  margin-top: 20px;
+  color: #819082;
+  font-size: 11px;
+  text-align: center;
+  border-top: 1px solid #e1e9df;
+}
+
+/* ========================================
+   KHU VỰC AGENT – WORKSPACE RIÊNG
+======================================== */
+
+.pg-agent-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 244px minmax(0, 1fr);
+  background: #f3f6f4;
+}
+
+.pg-agent-sidebar {
+  background: #ffffff;
+  border-right: 1px solid #dae5de;
+  padding: 25px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.pg-agent-brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 0 10px 12px;
+  border-bottom: 1px solid #edf1ec;
+}
+
+.pg-agent-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 800;
+  background: #1b6044;
+  color: #f1d999;
+}
+
+.pg-agent-brand strong,
+.pg-agent-brand span {
+  display: block;
+}
+
+.pg-agent-brand strong {
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: #1b5139;
+}
+
+.pg-agent-brand span {
+  margin-top: 3px;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #77917f;
+}
+
+.pg-agent-nav-heading {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #88978c;
+  margin: 0 9px 12px;
+  font-weight: 700;
+}
+
+.pg-agent-navigation {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.pg-agent-navigation a {
+  text-decoration: none;
+  color: #31533f;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 10px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+}
+
+.pg-agent-navigation a:hover,
+.pg-agent-navigation a.active {
+  background: #e8f3eb;
+  border-color: #d7e7da;
+  color: #155335;
+}
+
+.pg-agent-nav-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #eff4ef;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.pg-agent-navigation a.active .pg-agent-nav-icon {
+  background: #cfe7d4;
+}
+
+.pg-agent-nav-text strong,
+.pg-agent-nav-text small {
+  display: block;
+}
+
+.pg-agent-nav-text strong {
+  font-size: 12px;
+}
+
+.pg-agent-nav-text small {
+  margin-top: 4px;
+  font-size: 10px;
+  color: #75877a;
+  line-height: 1.35;
+}
+
+.pg-agent-sidebar-footer {
+  margin-top: auto;
+  padding: 13px 9px 0;
+  border-top: 1px solid #e8efe9;
+}
+
+.pg-agent-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pg-agent-avatar {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e0eee4;
+  color: #205e41;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.pg-agent-person > span:last-child {
+  min-width: 0;
+}
+
+.pg-agent-person strong,
+.pg-agent-person small {
+  display: block;
+}
+
+.pg-agent-person strong {
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.pg-agent-person small {
+  font-size: 10px;
+  color: #829385;
+  margin-top: 3px;
+}
+
+.pg-agent-logout {
+  width: 100%;
+  margin-top: 14px;
+  background: #ffffff;
+  border: 1px solid #d3e1d6;
+  color: #325d43;
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pg-agent-logout:hover {
+  background: #ecf4ee;
+}
+
+.pg-agent-workspace {
+  min-width: 0;
+}
+
+.pg-agent-header {
+  min-height: 126px;
+  padding: 26px clamp(18px, 2.4vw, 35px);
+  background: #ffffff;
+  border-bottom: 1px solid #dfeae1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.pg-agent-eyebrow {
+  font-size: 10px;
+  color: #6e9079;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin: 0 0 9px;
+}
+
+.pg-agent-header h1 {
+  margin: 0;
+  color: #1c5138;
+  font-size: clamp(21px, 2vw, 29px);
+}
+
+.pg-agent-description {
+  color: #718878;
+  font-size: 12px;
+  line-height: 1.65;
+  margin: 8px 0 0;
+}
+
+.pg-agent-role-tag {
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 700;
+  color: #225b3d;
+  background: #e9f3ec;
+  border: 1px solid #d7e6da;
+  border-radius: 30px;
+  padding: 9px 13px;
+}
+
+.pg-agent-main {
+  padding: 24px clamp(12px, 1.8vw, 27px) 45px;
+  min-width: 0;
+}
+
+/* ========================================
+   KHU VỰC ADMIN – CONSOLE ĐỘC LẬP
+======================================== */
+
+.pg-admin-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  background: #f4f5f8;
+}
+
+.pg-admin-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 27px 16px 20px;
+  color: #e5ebf9;
+  background: linear-gradient(165deg, #18263a, #111b2b 88%);
+}
+
+.pg-admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 9px 28px;
+  border-bottom: 1px solid #334057;
+}
+
+.pg-admin-logo {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: #304360;
+  border-radius: 11px;
+  color: #f3dca5;
+  font-weight: 800;
+}
+
+.pg-admin-brand strong,
+.pg-admin-brand small {
+  display: block;
+}
+
+.pg-admin-brand strong {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+
+.pg-admin-brand small {
+  font-size: 9px;
+  color: #a1b5d3;
+  letter-spacing: 0.09em;
+  margin-top: 4px;
+}
+
+.pg-admin-group-label {
+  margin: 28px 12px 10px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #829cbe;
+  font-weight: 800;
+}
+
+.pg-admin-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 11px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #dbe4f7;
+  text-decoration: none;
+}
+
+.pg-admin-nav a span:first-child {
+  font-size: 21px;
+}
+
+.pg-admin-nav a.active,
+.pg-admin-nav a:hover {
+  background: #304363;
+  color: #ffffff;
+}
+
+.pg-admin-sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid #334057;
+  padding-top: 20px;
+}
+
+.pg-admin-sidebar-footer p {
+  font-size: 11px;
+  line-height: 1.65;
+  color: #9eb0cd;
+}
+
+.pg-admin-sidebar-footer button {
+  width: 100%;
+  border: 1px solid #5a6f90;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pg-admin-sidebar-footer button:hover {
+  background: #334766;
+}
+
+.pg-admin-workspace {
+  min-width: 0;
+}
+
+.pg-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 146px;
+  background: #ffffff;
+  border-bottom: 1px solid #dfe4ed;
+  padding: 29px clamp(20px, 3vw, 42px);
+}
+
+.pg-admin-eyebrow {
+  font-size: 10px;
+  color: #647a9c;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin: 0 0 8px;
+}
+
+.pg-admin-header h1 {
+  font-size: clamp(23px, 2.4vw, 32px);
+  color: #1f314d;
+  margin: 0;
+}
+
+.pg-admin-header p:not(.pg-admin-eyebrow) {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #7a889a;
+  margin: 10px 0 0;
+}
+
+.pg-admin-account {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pg-admin-account-icon {
+  width: 37px;
+  height: 37px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: #e7ecf7;
+  color: #2b4369;
+  font-weight: 800;
+}
+
+.pg-admin-account strong,
+.pg-admin-account small {
+  display: block;
+}
+
+.pg-admin-account strong {
+  font-size: 11px;
+  color: #293f59;
+  overflow-wrap: anywhere;
+}
+
+.pg-admin-account small {
+  font-size: 10px;
+  color: #7689a4;
+  margin-top: 3px;
+}
+
+.pg-admin-main {
+  padding: 28px clamp(12px, 2.3vw, 36px) 45px;
+  min-width: 0;
+}
+
+.pg-admin-main .panel {
+  border-color: #dce2ec;
+  box-shadow: 0 4px 24px rgba(31, 48, 78, 0.04);
+}
+
+.pg-admin-main .panel h2 {
+  color: #2a4264;
+}
+
+.pg-admin-main .data-table th {
+  color: #49617f;
+  background: #eef2f8;
+}
+
+.pg-admin-main .btn-primary {
+  background: #304f7c;
+}
+
+.pg-admin-main .btn-primary:hover:not(:disabled) {
+  background: #233e65;
+}
+
+.pg-admin-main .btn-outline {
+  border-color: #cdd6e6;
+  color: #34547b;
+}
+
+.pg-admin-main .btn-outline:hover:not(:disabled) {
+  background: #ecf1f8;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1100px) {
+  .pg-agent-shell,
+  .pg-admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .pg-agent-sidebar,
+  .pg-admin-sidebar {
+    position: static;
+    height: auto;
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .pg-agent-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .pg-agent-nav-heading {
+    display: none;
+  }
+
+  .pg-agent-navigation a {
+    flex: 1 1 190px;
+  }
+
+  .pg-agent-sidebar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 10px 0 0;
+  }
+
+  .pg-agent-logout {
+    max-width: 160px;
+    margin: 0;
+  }
+
+  .pg-admin-sidebar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 0;
+    padding-top: 12px;
+  }
+
+  .pg-admin-sidebar-footer button {
+    width: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .pg-user-header {
+    padding: 13px;
+    gap: 11px;
+  }
+
+  .pg-user-brand {
+    width: 100%;
+  }
+
+  .pg-user-nav {
+    order: 3;
+    width: 100%;
+  }
+
+  .pg-user-profile {
+    margin-left: auto;
+  }
+
+  .pg-user-hero-inner {
+    padding: 29px 18px 33px;
+  }
+
+  .pg-user-hero-aside {
+    display: none;
+  }
+
+  .pg-user-main {
+    padding-top: 15px;
+  }
+
+  .pg-agent-header,
+  .pg-admin-header {
+    padding: 20px 15px;
+    align-items: flex-start;
+  }
+
+  .pg-agent-role-tag,
+  .pg-admin-account {
+    display: none;
+  }
+
+  .pg-agent-main,
+  .pg-admin-main {
+    padding: 15px 10px 35px;
+  }
+
+  .pg-agent-navigation a {
+    flex: 1 1 100%;
+  }
+
+  .pg-agent-sidebar-footer {
+    flex-wrap: wrap;
+  }
+
+  .pg-admin-sidebar-footer {
+    flex-wrap: wrap;
+  }
+}

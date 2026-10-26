@@ -1,0 +1,41 @@
+
+# React / Vite
+node_modules/
+dist/
+dist-ssr/
+coverage/
+
+# Spring Boot / Maven
+target/
+build/
+.gradle/
+*.class
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs
+*.log
+logs/
+
+# Database backup / exported archives
+*.sql
+*.sql.gz
+*.zip
+
+# Files uploaded to local backend
+uploads/
+storage/

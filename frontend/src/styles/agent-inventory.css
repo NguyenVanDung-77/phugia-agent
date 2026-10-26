@@ -1,0 +1,1250 @@
+
+/* ==========================================
+   PHÚ GIA ROYAL PARK
+   AGENT - QUẢN LÝ CĂN MỚI
+
+   1. Màn hình danh sách căn
+   2. Màn hình chỉnh sửa riêng
+   3. Công cụ + Thêm căn dạng mở rộng
+========================================== */
+
+.ag-shell .ai-root {
+  --ai-green: #0c8069;
+  --ai-ink: #1b3440;
+  --ai-muted: #71848d;
+  --ai-line: #e1e9ec;
+
+  color: var(--ai-ink);
+  min-width: 0;
+}
+
+.ag-shell .ai-root *,
+.ag-shell .ai-root *::before,
+.ag-shell .ai-root *::after {
+  box-sizing: border-box;
+}
+
+.ag-shell .ai-root button {
+  cursor: pointer;
+}
+
+.ag-shell .ai-root button:disabled {
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   PHẦN ĐẦU TRANG
+========================================== */
+
+.ai-eyebrow {
+  color: #0c8e73;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.ai-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 18px;
+  margin: 6px 0 20px;
+}
+
+.ai-headline h2,
+.ai-catalog h2 {
+  font-size: 23px;
+  color: #19323e;
+
+  margin: 6px 0;
+  letter-spacing: -0.03em;
+}
+
+.ai-headline p {
+  color: #71848d;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 5px 0 0;
+}
+
+.ai-headline-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* NÚT THÊM CĂN */
+
+.ag-shell .ai-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: #0b876e;
+  color: #fff;
+
+  border: 1px solid #0b876e;
+  border-radius: 11px;
+
+  padding: 10px 16px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  box-shadow:
+    0 8px 18px rgba(11, 135, 110, 0.15);
+}
+
+.ag-shell .ai-add-btn:hover {
+  background: #096d5a;
+}
+
+.ag-shell .ai-add-btn.open {
+  background: #163b43;
+  border-color: #163b43;
+}
+
+.ai-plus {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 13px;
+}
+
+/* ==========================================
+   THỐNG KÊ NHỎ
+========================================== */
+
+.ai-mini-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+.ai-mini-metrics > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  background: #fff;
+
+  border: 1px solid #e1e9ec;
+  border-radius: 14px;
+
+  padding: 17px 20px;
+
+  box-shadow:
+    0 6px 18px rgba(18, 55, 46, 0.03);
+}
+
+.ai-mini-metrics strong {
+  color: #214858;
+
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ai-mini-metrics span {
+  color: #7c9197;
+  font-size: 11px;
+}
+
+/* ==========================================
+   KHUNG THÊM CĂN DẠNG DROPDOWN
+========================================== */
+
+.ai-create {
+  background: #fff;
+
+  border: 1px solid #b9dfd1;
+  border-radius: 16px;
+
+  padding: 22px;
+  margin-bottom: 19px;
+
+  box-shadow:
+    0 10px 28px rgba(20, 100, 74, 0.07);
+
+  animation: ai-slide 0.2s ease-out;
+}
+
+@keyframes ai-slide {
+  from {
+    opacity: 0.4;
+    transform: translateY(-9px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-create-title {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  border-bottom: 1px solid #e1e9ec;
+  padding-bottom: 16px;
+}
+
+.ai-create-number {
+  display: grid;
+  place-items: center;
+
+  width: 39px;
+  height: 39px;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  background: #e5f6ee;
+  color: #098c6d;
+
+  font-size: 29px;
+  font-weight: 300;
+}
+
+.ai-create-title strong {
+  font-size: 16px;
+}
+
+.ai-create-title p {
+  color: #71848d;
+
+  font-size: 11px;
+  line-height: 1.6;
+
+  margin: 5px 0 0;
+}
+
+.ai-create-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+
+  padding: 18px 0 8px;
+}
+
+/* INPUT */
+
+.ai-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+  min-width: 0;
+
+  margin-bottom: 14px;
+}
+
+.ai-field > span {
+  color: #526e77;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.ag-shell .ai-field input,
+.ag-shell .ai-field select,
+.ag-shell .ai-field textarea {
+  width: 100%;
+  min-width: 0;
+
+  background: #fbfdfc;
+  color: #284651;
+
+  border: 1px solid #dbe5e8;
+  border-radius: 9px;
+
+  padding: 11px 12px;
+
+  font-size: 12px;
+  outline: none;
+}
+
+.ag-shell .ai-field input:focus,
+.ag-shell .ai-field select:focus,
+.ag-shell .ai-field textarea:focus {
+  border-color: #46ad8f;
+
+  box-shadow:
+    0 0 0 3px #dff5e9;
+}
+
+.ai-create-actions,
+.ai-create-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 9px;
+  margin-top: 7px;
+}
+
+.ai-create-foot {
+  border-top: 1px solid #e7edef;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.ai-point-count {
+  color: #49645c;
+  background: #f1f6f3;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ==========================================
+   THANH CHỌN PHÂN KHU
+========================================== */
+
+.ai-zone-filter {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.ag-shell .ai-zone-filter button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+  min-height: 41px;
+
+  padding: 10px 16px;
+
+  background: #fff;
+  color: #345663;
+
+  border: 1px solid #dce6e9;
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.ag-shell .ai-zone-filter button:hover {
+  background: #ecf7f2;
+  border-color: #b8dacb;
+}
+
+.ag-shell .ai-zone-filter button.active {
+  background: #0e806b;
+  border-color: #0e806b;
+  color: #fff;
+}
+
+.ai-zone-filter small {
+  background: #eff5f2;
+  color: #607970;
+
+  border-radius: 6px;
+
+  padding: 3px 8px;
+  font-size: 10px;
+}
+
+.ai-zone-filter .active small {
+  background: rgba(255, 255, 255, 0.17);
+  color: #fff;
+}
+
+/* ==========================================
+   BẢN ĐỒ LỚN
+========================================== */
+
+.ai-map-panel,
+.ai-unit-map {
+  min-width: 0;
+
+  background: #fff;
+
+  border: 1px solid #e1e9ec;
+  border-radius: 15px;
+
+  padding: 12px;
+
+  box-shadow:
+    0 7px 27px rgba(23, 59, 67, 0.06);
+}
+
+.ai-map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 9px 8px 16px;
+}
+
+.ai-map-header > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.ai-map-header strong {
+  color: #26424e;
+  font-size: 14px;
+}
+
+.ai-map-header span {
+  color: #8699a1;
+  font-size: 11px;
+}
+
+.ai-map-mode {
+  white-space: nowrap;
+
+  color: #117b63;
+  background: #e9f6ee;
+
+  border: 1px solid #c8e9d8;
+  border-radius: 30px;
+
+  padding: 8px 10px;
+  font-size: 10px;
+}
+
+.ag-shell .ai-root .canvas-frame {
+  border: 1px solid #e6ecee;
+  border-radius: 11px;
+
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.ag-shell .ai-root .canvas-area {
+  height: min(66vh, 730px);
+  min-height: 490px;
+
+  background: #edf2ef;
+}
+
+.ag-shell .ai-root .map-controls {
+  color: #7e9196;
+  background: #f8fbf9;
+
+  border-color: #e6edef;
+
+  padding: 9px 12px;
+  font-size: 11px;
+}
+
+.ai-map-empty {
+  text-align: center;
+
+  color: #86999d;
+  padding: 100px 20px;
+}
+
+/* ==========================================
+   DANH SÁCH CĂN THEO PHÂN KHU
+========================================== */
+
+.ai-catalog {
+  margin-top: 22px;
+  padding: 23px;
+
+  background: #fff;
+
+  border: 1px solid #e1e9ec;
+  border-radius: 16px;
+}
+
+.ai-catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.ai-catalog h2 {
+  margin-bottom: 0;
+}
+
+.ai-catalog-search {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  min-width: 220px;
+
+  border: 1px solid #dce6e9;
+  border-radius: 9px;
+
+  background: #fafcfb;
+  padding: 0 12px;
+}
+
+.ai-catalog-search span {
+  color: #8da3aa;
+  font-size: 22px;
+}
+
+.ag-shell .ai-catalog-search input {
+  width: 100%;
+  min-width: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  box-shadow: none;
+
+  padding: 11px 0;
+  font-size: 12px;
+}
+
+.ai-zone-group + .ai-zone-group {
+  margin-top: 25px;
+}
+
+.ai-zone-group-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+
+  padding-bottom: 10px;
+  margin-bottom: 13px;
+
+  border-bottom: 1px solid #e1e9ec;
+}
+
+.ai-zone-group-head > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-zone-group-head h3 {
+  margin: 0;
+
+  color: #233f4d;
+  font-size: 15px;
+}
+
+.ai-zone-group-head > span {
+  color: #889ba2;
+  font-size: 11px;
+}
+
+.ai-zone-marker {
+  display: block;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 4px;
+  background: #b3c1c4;
+}
+
+.ai-zone-marker.ruby {
+  background: #b37478;
+}
+
+.ai-zone-marker.sapphire {
+  background: #6f9ab4;
+}
+
+.ai-zone-marker.crystal {
+  background: #bdad7c;
+}
+
+/* DANH SÁCH THẺ CĂN */
+
+.ai-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.ag-shell .ai-unit-card {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+  min-height: 83px;
+
+  padding: 12px;
+
+  text-align: left;
+
+  background: #fbfdfc;
+
+  border: 1px solid #e3ebed;
+  border-radius: 11px;
+
+  transition:
+    transform 0.16s,
+    border-color 0.16s,
+    background 0.16s;
+}
+
+.ag-shell button.ai-unit-card:hover {
+  transform: translateY(-2px);
+
+  background: #f0faf5;
+  border-color: #81bea9;
+
+  box-shadow:
+    0 6px 13px rgba(23, 59, 67, 0.06);
+}
+
+.ai-card-icon {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 37px;
+
+  width: 37px;
+  height: 37px;
+
+  color: #2b8267;
+  background: #e9f4ee;
+
+  border-radius: 9px;
+  font-size: 24px;
+}
+
+.ai-card-body {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  min-width: 0;
+
+  gap: 6px;
+}
+
+.ai-card-body strong {
+  color: #2c4952;
+
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.ai-card-body small {
+  color: #85949b;
+  font-size: 10px;
+}
+
+.ai-card-action {
+  color: #128367;
+
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* TRẠNG THÁI CĂN */
+
+.ai-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #517961;
+
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.ai-status i {
+  display: inline-block;
+
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background: #6caf7e;
+}
+
+.ai-status.ai-SOLD {
+  color: #ad6970;
+}
+
+.ai-status.ai-SOLD i {
+  background: #e4a4a4;
+}
+
+.ai-status.ai-NOT_OPEN {
+  color: #a18743;
+}
+
+.ai-status.ai-NOT_OPEN i {
+  background: #dec461;
+}
+
+/* BẢN NHÁP */
+
+.ai-draft-card {
+  border-style: dashed !important;
+}
+
+.ai-draft-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.ag-shell .ai-draft-actions .btn {
+  padding: 6px 9px;
+  font-size: 10px;
+}
+
+.ai-zone-empty {
+  color: #93a0a4;
+
+  font-size: 12px;
+  padding: 18px 4px;
+}
+
+/* ==========================================
+   MÀN HÌNH CHỈNH SỬA CĂN RIÊNG
+========================================== */
+
+.ai-detail-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 14px;
+  margin: 1px 0 17px;
+}
+
+.ag-shell .ai-back {
+  background: #fff;
+  color: #0b8269;
+
+  border: 1px solid #dce6e9;
+  border-radius: 10px;
+
+  padding: 10px 15px;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ag-shell .ai-back:hover {
+  background: #eff9f3;
+}
+
+.ai-detail-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.ai-detail-intro h2 {
+  color: #1b3944;
+
+  font-size: 27px;
+  letter-spacing: -0.035em;
+
+  margin: 5px 0;
+}
+
+.ai-unit-meta {
+  color: #899ca3;
+  font-size: 11px;
+}
+
+/* BẢN ĐỒ BÊN TRÁI + FORM BÊN PHẢI */
+
+.ai-detail-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(385px, 0.9fr);
+
+  align-items: start;
+
+  gap: 17px;
+}
+
+.ai-unit-map {
+  position: sticky;
+  top: 18px;
+}
+
+.ag-shell .ai-unit-map .canvas-area {
+  height: clamp(460px, 68vh, 780px);
+  min-height: 460px;
+}
+
+.ai-map-tip {
+  color: #8d9da2;
+
+  font-size: 10px;
+  line-height: 1.7;
+
+  margin: 11px 6px 2px;
+}
+
+/* ==========================================
+   PANEL CHỈNH SỬA BẰNG TAB
+========================================== */
+
+.ai-editor-panel {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  background: #fff;
+
+  border: 1px solid #e1e9ec;
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 7px 27px rgba(23, 59, 67, 0.06);
+}
+
+.ai-editor-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+  padding: 19px 20px 15px;
+}
+
+.ai-editor-top > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ai-editor-top strong {
+  color: #244350;
+  font-size: 15px;
+}
+
+.ai-editor-top small {
+  color: #91a0a5;
+  font-size: 10px;
+}
+
+.ag-shell .ai-editor-close {
+  width: 30px;
+  height: 30px;
+
+  color: #637b85;
+  background: #f9fbfa;
+
+  border: 1px solid #e2e8ea;
+  border-radius: 9px;
+
+  font-size: 20px;
+}
+
+/* CÁC TAB */
+
+.ai-editor-tabs {
+  display: flex;
+  overflow-x: auto;
+
+  padding: 0 12px;
+
+  border-bottom: 1px solid #e5eced;
+
+  scrollbar-width: thin;
+}
+
+.ag-shell .ai-editor-tabs button {
+  padding: 13px 10px;
+
+  background: #fff;
+  color: #81929a;
+
+  border: 0;
+  border-bottom: 2px solid transparent;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+.ag-shell .ai-editor-tabs button:hover {
+  color: #09856b;
+}
+
+.ag-shell .ai-editor-tabs button.active {
+  color: #09856b;
+  border-bottom-color: #10a07d;
+}
+
+/* CUỘN TRONG PANEL THAY VÌ CẢ TRANG */
+
+.ai-editor-body {
+  height: clamp(420px, 56vh, 650px);
+
+  overflow-y: auto;
+  padding: 19px 21px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #bfd8d2 transparent;
+}
+
+.ai-editor-placeholder {
+  color: #81939b;
+  font-size: 12px;
+  padding: 25px 0;
+}
+
+.ai-edit-form h3 {
+  color: #23414b;
+
+  font-size: 15px;
+  margin: 0 0 17px;
+}
+
+.ai-edit-form .ai-field {
+  margin-bottom: 15px;
+}
+
+.ai-field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.ai-field-hint {
+  color: #8a9da3;
+
+  font-size: 11px;
+  line-height: 1.7;
+
+  margin: -5px 0 18px;
+}
+
+/* NÚT LƯU CUỐI FORM */
+
+.ai-form-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  gap: 9px;
+
+  padding-top: 14px;
+  margin-top: 9px;
+
+  border-top: 1px solid #eaf0ee;
+}
+
+/* ĐỔI PHÂN KHU */
+
+.ai-current-zone {
+  color: #698477;
+  background: #eef8f3;
+
+  border: 1px solid #d4eadd;
+  border-radius: 10px;
+
+  padding: 15px;
+  margin-bottom: 18px;
+
+  font-size: 12px;
+}
+
+.ai-current-zone strong {
+  color: #167657;
+}
+
+/* ==========================================
+   THƯ VIỆN ẢNH
+========================================== */
+
+.ai-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+
+  margin: 12px 0;
+}
+
+.ai-photo {
+  min-width: 0;
+
+  padding: 8px;
+
+  border: 1px solid #e2e9eb;
+  border-radius: 10px;
+}
+
+.ai-photo img {
+  display: block;
+
+  width: 100%;
+  height: 120px;
+
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.ai-photo small {
+  display: block;
+
+  color: #87989d;
+  font-size: 10px;
+
+  overflow-wrap: anywhere;
+  margin-top: 7px;
+}
+
+.ai-photo .btn {
+  width: 100%;
+  margin-top: 9px;
+}
+
+.ai-preview-block {
+  padding: 10px;
+
+  background: #f7fbf8;
+
+  border: 1px dashed #a8cbb6;
+  border-radius: 10px;
+}
+
+.ai-cover-form {
+  border-top: 1px solid #e9eeec;
+
+  margin-top: 20px;
+  padding-top: 15px;
+}
+
+/* ==========================================
+   XÓA THÔNG TIN CĂN
+========================================== */
+
+.ai-danger-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 15px;
+
+  padding: 16px 0;
+  border-top: 1px solid #e9eff0;
+}
+
+.ai-danger-option strong {
+  color: #394f58;
+  font-size: 12px;
+}
+
+.ai-danger-option p {
+  color: #87999f;
+
+  font-size: 11px;
+  line-height: 1.7;
+
+  margin: 6px 0;
+}
+
+.ai-danger-option .btn {
+  flex-shrink: 0;
+}
+
+.ai-editor-footer {
+  padding: 11px 19px;
+
+  color: #80918c;
+  background: #fafdfb;
+
+  border-top: 1px solid #e7eded;
+
+  font-size: 10px;
+}
+
+/* ==========================================
+   RESPONSIVE LAPTOP
+========================================== */
+
+@media (max-width: 1540px) {
+  .ai-cards {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .ai-detail-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(360px, 0.9fr);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE TABLET
+========================================== */
+
+@media (max-width: 1220px) {
+  .ai-cards {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .ai-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-unit-map {
+    position: static;
+  }
+
+  .ai-editor-body {
+    height: auto;
+    max-height: 590px;
+  }
+
+  .ag-shell .ai-unit-map .canvas-area {
+    height: 56vh;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+  .ai-headline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ai-headline-actions {
+    flex-wrap: wrap;
+  }
+
+  .ai-mini-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .ai-mini-metrics > div {
+    padding: 13px;
+  }
+
+  .ai-create {
+    padding: 14px;
+  }
+
+  .ai-create-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .ai-zone-filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    padding-bottom: 4px;
+  }
+
+  .ai-zone-filter button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ai-map-header {
+    align-items: flex-start;
+  }
+
+  .ai-map-header .ai-map-mode {
+    display: none;
+  }
+
+  .ag-shell .ai-root .canvas-area {
+    height: 390px;
+    min-height: 360px;
+  }
+
+  .ai-catalog {
+    padding: 14px;
+  }
+
+  .ai-catalog-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ai-catalog-search {
+    min-width: 0;
+  }
+
+  .ai-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-detail-intro h2 {
+    font-size: 22px;
+  }
+
+  .ai-field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .ai-editor-body {
+    padding: 15px;
+  }
+
+  .ai-editor-tabs {
+    padding: 0 6px;
+  }
+
+  .ag-shell .ai-unit-map .canvas-area {
+    height: 390px;
+    min-height: 350px;
+  }
+
+  .ai-danger-option {
+    flex-direction: column;
+  }
+
+  .ai-photo-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-create,
+  .ai-unit-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}

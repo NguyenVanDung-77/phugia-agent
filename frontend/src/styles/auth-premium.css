@@ -1,0 +1,939 @@
+
+/* ==========================================
+   PHÚ GIA ROYAL PARK
+   PREMIUM LOGIN & REGISTER
+========================================== */
+
+.auth-screen {
+  --a-dark: #102e24;
+  --a-green: #1b4a39;
+  --a-accent: #bba171;
+  --a-text: #203a2c;
+  --a-muted: #849188;
+  --a-border: #dfe6df;
+
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+
+  padding: clamp(14px, 3vw, 34px);
+
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      #e1eade 0%,
+      transparent 41%
+    ),
+    radial-gradient(
+      ellipse at 100% 100%,
+      #e9e4d7 0%,
+      transparent 42%
+    ),
+    #f4f5f1;
+
+  color: var(--a-text);
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+.auth-screen *,
+.auth-screen *::before,
+.auth-screen *::after {
+  box-sizing: border-box;
+}
+
+.auth-screen a {
+  text-decoration: none;
+}
+
+.auth-screen button {
+  cursor: pointer;
+}
+
+.auth-screen :is(
+  input,
+  button,
+  a
+):focus-visible {
+  outline: 3px solid #8fb69d;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   BỐ CỤC 2 CỘT
+========================================== */
+
+.auth-layout {
+  width: min(1090px, 100%);
+
+  min-height: min(
+    740px,
+    calc(100vh - 68px)
+  );
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.94fr)
+    minmax(0, 1fr);
+
+  background: #fff;
+
+  border: 1px solid rgba(26, 68, 43, 0.1);
+  border-radius: 23px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 85px
+    rgba(27, 49, 34, 0.13);
+}
+
+/* ==========================================
+   CỘT TRÁI — THƯƠNG HIỆU
+========================================== */
+
+.auth-story {
+  position: relative;
+  isolation: isolate;
+
+  min-width: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 38px;
+
+  padding:
+    34px
+    clamp(28px, 4vw, 51px)
+    30px;
+
+  background:
+    linear-gradient(
+      151deg,
+      #214d3c 0%,
+      #15392b 55%,
+      #0f2b22 100%
+    );
+
+  color: #fff;
+}
+
+.auth-story::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  opacity: 0.3;
+
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(214, 191, 143, 0.35),
+      transparent 46%
+    ),
+    repeating-linear-gradient(
+      130deg,
+      transparent 0 35px,
+      rgba(255, 255, 255, 0.038) 35px 36px
+    );
+}
+
+.auth-story::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  width: 450px;
+  height: 450px;
+
+  border: 1px solid rgba(241, 225, 180, 0.13);
+  border-radius: 50%;
+
+  right: -240px;
+  top: 100px;
+
+  box-shadow:
+    0 0 0 55px rgba(255, 255, 255, 0.02),
+    0 0 0 130px rgba(255, 255, 255, 0.014);
+}
+
+/* LOGO CHỮ */
+
+.auth-story-brand {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: max-content;
+  max-width: 100%;
+
+  color: #f6f4eb;
+}
+
+.auth-brand-symbol {
+  display: grid;
+  place-items: center;
+
+  width: 41px;
+  height: 41px;
+
+  flex-shrink: 0;
+
+  border: 1px solid rgba(226, 210, 169, 0.55);
+  border-radius: 11px;
+
+  font-size: 27px;
+  color: #e9d4aa;
+}
+
+.auth-story-brand strong {
+  display: block;
+
+  font-size: 13px;
+  letter-spacing: 0.095em;
+
+  white-space: nowrap;
+}
+
+.auth-story-brand small {
+  display: block;
+
+  margin-top: 6px;
+
+  font-size: 9px;
+  letter-spacing: 0.21em;
+
+  color: #d3c5a5;
+}
+
+/* NỘI DUNG CỘT TRÁI */
+
+.auth-story-center {
+  position: relative;
+  z-index: 1;
+
+  margin: auto 0;
+}
+
+.auth-story-overline {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+
+  color: #dac393;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.auth-story-overline > span {
+  width: 24px;
+  height: 1px;
+
+  background: #ceb381;
+}
+
+.auth-story-center h2 {
+  max-width: 410px;
+
+  font:
+    400 clamp(30px, 3vw, 43px)/1.22
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  letter-spacing: -0.025em;
+
+  margin: 19px 0 16px;
+}
+
+.auth-story-center h2 em {
+  color: #d9bc82;
+  font-style: italic;
+}
+
+.auth-story-center > p {
+  max-width: 365px;
+
+  font-size: 12px;
+  line-height: 1.95;
+
+  color: #c7d9cb;
+  margin: 0;
+}
+
+.auth-story-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 13px;
+
+  color: #c3d0c3;
+
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+}
+
+.auth-story-foot i {
+  height: 3px;
+  width: 3px;
+
+  border-radius: 50%;
+  background: #ccae78;
+}
+
+/* ==========================================
+   HỌA TIẾT TRANG ĐĂNG NHẬP
+========================================== */
+
+.auth-decor {
+  position: relative;
+
+  width: min(350px, 100%);
+
+  margin: 15px auto 0;
+
+  color: #e7d6b0;
+}
+
+.auth-decor svg {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  filter:
+    drop-shadow(0 7px 15px rgba(0, 0, 0, 0.08));
+}
+
+.auth-decor-loop {
+  position: absolute;
+
+  border: 1px solid rgba(238, 218, 177, 0.15);
+  border-radius: 50%;
+}
+
+.auth-decor-loop.one {
+  inset: 16% 8%;
+}
+
+.auth-decor-loop.two {
+  inset: 4% -6%;
+}
+
+/* 3 LỢI ÍCH CỦA TRANG ĐĂNG KÝ */
+
+.auth-feature-stack {
+  margin-top: 45px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.18);
+}
+
+.auth-feature-stack > div {
+  display: grid;
+
+  grid-template-columns: 31px 1fr;
+  column-gap: 11px;
+
+  padding: 20px 0;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.14);
+}
+
+.auth-feature-stack > div > span {
+  grid-row: span 2;
+
+  color: #dabf8d;
+  font: 20px Georgia, serif;
+}
+
+.auth-feature-stack strong {
+  color: #f1f4ed;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.auth-feature-stack small {
+  margin-top: 6px;
+
+  font-size: 11px;
+  color: #afc7b7;
+}
+
+/* ==========================================
+   CỘT PHẢI — BIỂU MẪU
+========================================== */
+
+.auth-main {
+  min-width: 0;
+  min-height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    42px
+    clamp(26px, 5.1vw, 67px);
+
+  background: #fff;
+}
+
+.auth-form-wrap {
+  width: 100%;
+  max-width: 390px;
+}
+
+.auth-mobile-brand {
+  display: none;
+}
+
+.auth-kicker {
+  color: #a28d66;
+
+  font-size: 10px;
+  letter-spacing: 0.17em;
+  font-weight: 850;
+}
+
+.auth-form-wrap h1 {
+  margin: 11px 0 9px;
+
+  color: #1c4130;
+
+  font-size:
+    clamp(27px, 2.7vw, 35px);
+
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.25;
+}
+
+.auth-subtitle {
+  margin: 0 0 30px;
+
+  color: #849388;
+
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+/* ==========================================
+   INPUT VÀ LABEL
+========================================== */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.auth-form > label,
+.auth-label-row label {
+  color: #415c4c;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  margin: 0 0 9px;
+}
+
+.auth-form > input,
+.auth-password input {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+
+  border: 1px solid var(--a-border);
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #fbfcfa;
+  padding: 0 14px;
+
+  color: #214433;
+  font-size: 13px;
+
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    background 0.18s;
+}
+
+.auth-form > input {
+  margin-bottom: 19px;
+}
+
+.auth-form > input::placeholder,
+.auth-password input::placeholder {
+  color: #abb7ad;
+}
+
+.auth-form > input:focus,
+.auth-password input:focus {
+  border-color: #6ba98b;
+
+  box-shadow:
+    0 0 0 3px rgba(54, 143, 94, 0.095);
+
+  background: #fff;
+}
+
+.auth-label-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* HIỆN / ẨN MẬT KHẨU */
+
+.auth-password {
+  display: flex;
+  position: relative;
+
+  width: 100%;
+  margin: 0 0 19px;
+}
+
+.auth-password input {
+  padding-right: 53px;
+}
+
+.auth-password button {
+  position: absolute;
+
+  right: 7px;
+  top: 6px;
+
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #899c8f;
+}
+
+.auth-password button:hover {
+  color: #245f40;
+  background: #edf4ee;
+}
+
+.auth-password button svg {
+  width: 19px;
+  height: 19px;
+}
+
+.auth-password-note {
+  margin: -6px 0 16px;
+
+  color: #8a9a8f;
+
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   NÚT ĐĂNG NHẬP / ĐĂNG KÝ
+========================================== */
+
+.auth-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  width: 100%;
+  min-height: 49px;
+
+  margin-top: 3px;
+
+  border: 1px solid #1e6147;
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      100deg,
+      #205d42,
+      #1a4e37
+    );
+
+  color: #fff;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  box-shadow:
+    0 10px 24px
+    rgba(22, 78, 52, 0.16);
+
+  transition:
+    transform 0.18s,
+    background 0.18s,
+    box-shadow 0.18s;
+}
+
+.auth-submit span {
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.auth-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 15px 27px
+    rgba(22, 78, 52, 0.19);
+}
+
+.auth-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* CHUYỂN LOGIN / REGISTER */
+
+.auth-switch {
+  margin: 23px 0 0;
+
+  font-size: 12px;
+  color: #78897c;
+
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #147b53;
+  font-weight: 800;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+.auth-form-bottom {
+  border-top: 1px solid #edf0ea;
+
+  padding-top: 20px;
+  margin-top: 34px;
+
+  text-align: center;
+
+  color: #a0aba1;
+
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+/* THÔNG BÁO */
+
+.auth-alert {
+  padding: 11px 13px;
+  border-radius: 9px;
+
+  margin-bottom: 20px;
+
+  font-size: 12px;
+  line-height: 1.6;
+
+  border: 1px solid;
+}
+
+.auth-alert.error {
+  color: #a63f46;
+
+  border-color: #f0cacc;
+  background: #fff2f1;
+}
+
+.auth-alert.success {
+  color: #226d4b;
+
+  border-color: #c6e5d4;
+  background: #edf9f1;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 800px) {
+  .auth-screen {
+    padding: 0;
+    background: #fff;
+  }
+
+  .auth-layout {
+    width: 100%;
+    min-height: 100vh;
+
+    display: block;
+
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .auth-story {
+    display: none;
+  }
+
+  .auth-main {
+    min-height: 100vh;
+
+    padding: 43px 20px 50px;
+
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .auth-mobile-brand {
+    display: block;
+
+    width: 100%;
+    max-width: 390px;
+
+    color: #245c41;
+
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+
+    margin: 0 0 54px;
+  }
+
+  .auth-form-wrap {
+    max-width: 390px;
+  }
+
+  .auth-form-wrap h1 {
+    font-size: 31px;
+  }
+}
+
+@media (max-width: 390px) {
+  .auth-main {
+    padding-inline: 18px;
+  }
+
+  .auth-mobile-brand {
+    margin-bottom: 35px;
+  }
+}
+
+/* ==========================================
+   GIẢM HIỆU ỨNG
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-screen *,
+  .auth-screen *::before,
+  .auth-screen *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+
+/* ==========================================
+   THU NHỎ FORM LOGIN & REGISTER
+   PHÚ GIA ROYAL PARK
+========================================== */
+
+/* Thu nhỏ toàn bộ khung */
+.auth-screen .auth-layout {
+  width: min(860px, 100%);
+  min-height: auto;
+
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(0, 1fr);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 16px 55px rgba(27, 49, 34, 0.11);
+}
+
+/* Phần bên trái */
+.auth-screen .auth-story {
+  padding: 27px 29px 24px;
+  gap: 20px;
+}
+
+.auth-screen .auth-story-center h2 {
+  font-size: 30px;
+  line-height: 1.23;
+  margin: 13px 0 11px;
+}
+
+.auth-screen .auth-story-center > p {
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.auth-screen .auth-decor {
+  width: min(220px, 100%);
+  margin-top: 8px;
+}
+
+/* Thu gọn danh sách lợi ích trang đăng ký */
+.auth-screen .auth-feature-stack {
+  margin-top: 20px;
+}
+
+.auth-screen .auth-feature-stack > div {
+  padding: 12px 0;
+}
+
+/* Phần form bên phải */
+.auth-screen .auth-main {
+  padding: 30px 36px;
+}
+
+.auth-screen .auth-form-wrap {
+  max-width: 330px;
+}
+
+/* Tiêu đề */
+.auth-screen .auth-form-wrap h1 {
+  font-size: 28px;
+  margin: 8px 0 7px;
+}
+
+.auth-screen .auth-subtitle {
+  font-size: 11px;
+  line-height: 1.6;
+  margin-bottom: 19px;
+}
+
+/* Nhãn nhập */
+.auth-screen .auth-form > label,
+.auth-screen .auth-label-row label {
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+
+/* Ô nhập */
+.auth-screen .auth-form > input,
+.auth-screen .auth-password input {
+  height: 42px;
+  padding: 0 12px;
+
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+/* Khoảng cách giữa các ô */
+.auth-screen .auth-form > input {
+  margin-bottom: 14px;
+}
+
+.auth-screen .auth-password {
+  margin-bottom: 14px;
+}
+
+/* Nút hiện/ẩn mật khẩu */
+.auth-screen .auth-password button {
+  width: 34px;
+  height: 34px;
+  top: 4px;
+  right: 5px;
+}
+
+/* Ghi chú mật khẩu */
+.auth-screen .auth-password-note {
+  font-size: 10px;
+  margin: -3px 0 13px;
+}
+
+/* Nút đăng nhập / đăng ký */
+.auth-screen .auth-submit {
+  min-height: 43px;
+
+  font-size: 12px;
+  border-radius: 9px;
+
+  margin-top: 2px;
+}
+
+/* Chuyển giữa đăng nhập và đăng ký */
+.auth-screen .auth-switch {
+  margin-top: 16px;
+  font-size: 11px;
+}
+
+/* Ghi chú cuối form */
+.auth-screen .auth-form-bottom {
+  margin-top: 20px;
+  padding-top: 14px;
+  font-size: 10px;
+}
+
+/* Logo bên trái nhỏ gọn */
+.auth-screen .auth-brand-symbol {
+  width: 36px;
+  height: 36px;
+}
+
+.auth-screen .auth-story-brand strong {
+  font-size: 11px;
+}
+
+.auth-screen .auth-story-brand small {
+  font-size: 8px;
+}
+
+/* ==========================================
+   RESPONSIVE MOBILE
+========================================== */
+
+@media (max-width: 800px) {
+  .auth-screen .auth-layout {
+    width: 100%;
+    min-height: 100vh;
+
+    display: block;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .auth-screen .auth-main {
+    min-height: 100vh;
+    padding: 35px 20px;
+  }
+
+  .auth-screen .auth-form-wrap {
+    max-width: 350px;
+  }
+
+  .auth-screen .auth-mobile-brand {
+    margin-bottom: 30px;
+  }
+}
