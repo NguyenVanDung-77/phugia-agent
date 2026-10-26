@@ -750,8 +750,8 @@ export default function AgentPage() {
   // MỞ MÀN HÌNH CHỈNH SỬA RIÊNG
   // ======================================
 
-  async function selectSaved(unit) {
-    if (!unit || !confirmLeaving()) return;
+  async function selectSaved(unit, { bypassUnsavedWarning = false } = {}) {
+    if (!unit || (!bypassUnsavedWarning && !confirmLeaving())) return;
 
     const request = ++detailRequest.current;
 
@@ -919,7 +919,8 @@ export default function AgentPage() {
     setSelectedZone(zoneCode);
 
     setNotice(
-      "Đã khoanh căn và tạo bản nháp. Hãy lưu vào MySQL để chỉnh sửa thông tin và ảnh."
+      "Đã khoanh xong nhưng căn mới chỉ là BẢN NHÁP trên trình duyệt, chưa hiển thị bên User. " +
+      "Hãy bấm nút Lưu căn vào TiDB bên dưới. Sau khi lưu, biểu mẫu thông tin, giá, ảnh và phân khu sẽ tự mở."
     );
   }
 
@@ -1053,17 +1054,35 @@ export default function AgentPage() {
 
       await refreshDatabase();
 
-      clearEditor();
-
       setSelectedDraftId(null);
       setSelectedMapId(null);
       setPoints([]);
       setTool("pan");
       setAddOpen(false);
 
-      setNotice(
-        `Đã lưu ${result.created} căn, bỏ qua ${result.skipped} căn trùng.`
-      );
+      const savedForEditing =
+        Array.isArray(result.units) && result.units.length === 1
+          ? result.units[0]
+          : null;
+
+      if (savedForEditing) {
+        await selectSaved(savedForEditing, {
+          bypassUnsavedWarning: true,
+        });
+
+        setNotice(
+          "Căn đã được lưu vào TiDB. Bạn có thể nhập thông tin, " +
+          "giá bán, tải ảnh và chỉnh phân khu trong các tab bên phải. " +
+          "Trang User sẽ thấy polygon sau khi làm mới trang."
+        );
+      } else {
+        clearEditor();
+
+        setNotice(
+          `Đã lưu ${result.created} căn, bỏ qua ${result.skipped} căn trùng. ` +
+          "Chọn một căn trong danh sách để mở form chỉnh sửa."
+        );
+      }
     } catch (err) {
       setError(
         `Không thể lưu MySQL: ${err.message}`
@@ -1623,7 +1642,7 @@ export default function AgentPage() {
                 <h2>Danh sách căn theo phân khu</h2>
                 <p>
                   Chọn phân khu, xem mặt bằng và
-                  nhấn vào căn để chỉnh sửa.
+                  nhấn vào căn đã lưu để chỉnh sửa đầy đủ thông tin, giá, ảnh và phân khu.
                 </p>
               </div>
 
@@ -1851,7 +1870,7 @@ export default function AgentPage() {
                   >
                     {savingDrafts
                       ? "Đang lưu..."
-                      : `Lưu ${pendingDrafts.length} căn vào MySQL`}
+                      : `Lưu ${pendingDrafts.length} căn vào TiDB / MySQL`}
                   </button>
 
                   <button
