@@ -88,12 +88,12 @@ function imageUrl(raw) {
 }
 
 function DetailRow({ label, value }) {
-  if (!filled(value)) return null;
+
 
   return (
     <div className="udf-row">
       <span>{label}</span>
-      <strong>{value}</strong>
+      <strong>{filled(value) ? value : "Chưa cập nhật"}</strong>
     </div>
   );
 }
@@ -474,14 +474,7 @@ export default function UserUnitDetailPage() {
     [selected, unitId]
   );
 
-  const hasPrice =
-    detail &&
-    [
-      detail.basePrice,
-      detail.standardPaymentPrice,
-      detail.early70Price,
-      detail.early95Price,
-    ].some(filled);
+
 
   function back() {
     navigate("/user", {
@@ -1020,21 +1013,18 @@ export default function UserUnitDetailPage() {
                     }
                   />
 
-                  {filled(
-                    detail.structureDescription
-                  ) && (
-                    <div>
-                      <h3>Kết cấu</h3>
+                  <div>
+                    <h3>Kết cấu</h3>
 
-                      <p className="udf-description">
-                        {detail.structureDescription}
-                      </p>
-                    </div>
-                  )}
+                    <p className="udf-description">
+                      {filled(detail.structureDescription)
+                        ? detail.structureDescription
+                        : "Chưa cập nhật"}
+                    </p>
+                  </div>
                 </section>
 
                 {/* CÁC MỨC GIÁ */}
-                {hasPrice && (
                   <section className="udf-card udf-section udf-price">
                     <small>BẢNG GIÁ</small>
 
@@ -1092,7 +1082,6 @@ export default function UserUnitDetailPage() {
                       }
                     />
                   </section>
-                )}
               </div>
             </div>
 
