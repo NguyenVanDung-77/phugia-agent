@@ -5,7 +5,6 @@ import PageLayout from "../../components/PageLayout";
 import MapCanvas, { parsePoints } from "../../components/MapCanvas";
 import "../../styles/agent-inventory.css";
 
-const PLAN_ID = 1;
 const DRAFT_KEY = "phugia-agent-polygon-draft-v1";
 const MAX_IMAGES = 20;
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
@@ -451,10 +450,19 @@ export default function AgentPage() {
   useEffect(() => {
     let active = true;
 
-    Promise.all([
-      api(`/api/public/master-plans/${PLAN_ID}/map`),
-      api(`/api/agent/master-plans/${PLAN_ID}/units`),
-    ])
+    api("/api/public/master-plans")
+      .then((plans) => {
+        const plan = Array.isArray(plans) ? plans[0] : null;
+
+        if (!plan?.id) {
+          throw new Error("TiDB chưa có mặt bằng đang hoạt động.");
+        }
+
+        return Promise.all([
+          api(`/api/public/master-plans/${plan.id}/map`),
+          api(`/api/agent/master-plans/${plan.id}/units`),
+        ]);
+      })
       .then(([mapData, unitData]) => {
         if (!active) return;
 
@@ -724,11 +732,16 @@ export default function AgentPage() {
   // ======================================
 
   async function refreshDatabase() {
+    if (!map?.id) {
+      setError("Chưa tải được mặt bằng từ TiDB.");
+      return false;
+    }
+
     setRefreshing(true);
 
     try {
       const response = await api(
-        `/api/agent/master-plans/${PLAN_ID}/units`
+        `/api/agent/master-plans/${map.id}/units`
       );
 
       setSavedUnits(
@@ -814,6 +827,7 @@ export default function AgentPage() {
     }
 
     setDetailsLoading(false);
+    return info.status === "fulfilled";
   }
 
   function selectDraft(draft) {
@@ -878,12 +892,12 @@ export default function AgentPage() {
     });
   }
 
-  function finishPolygon() {
+  async function finishPolygon() {
     setError("");
     setNotice("");
 
     if (
-      !map ||
+      !map?.id ||
       !validPolygon(
         points,
         map.imageWidth,
@@ -896,34 +910,91 @@ export default function AgentPage() {
       return;
     }
 
-    const draft = {
-      id:
-        `local-${Date.now()}-` +
-        Math.random().toString(36).slice(2, 8),
+    if (savingDrafts) return;
 
+    const draft = {
+      id: `local-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       zoneCode,
       unitCode: draftCode.trim() || null,
       saleStatus: draftStatus,
       points: [...points],
     };
 
+    // Giữ bản nháp để không mất dữ liệu khi API lỗi.
     setDrafts((old) => [...old, draft]);
-
     setSelectedDraftId(draft.id);
     setSelectedMapId(`draft-${draft.id}`);
 
     setPoints([]);
     setDraftCode("");
     setTool("pan");
-
     setSelectedZone(zoneCode);
 
-    setNotice(
-      "Đã khoanh xong nhưng căn mới chỉ là BẢN NHÁP trên trình duyệt, chưa hiển thị bên User. " +
-      "Hãy bấm nút Lưu căn vào TiDB bên dưới. Sau khi lưu, biểu mẫu thông tin, giá, ảnh và phân khu sẽ tự mở."
-    );
-  }
+    setSavingDrafts(true);
 
+    try {
+      const result = await api(
+        `/api/agent/master-plans/${map.id}/import-draft`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            imageUrl: map.imageUrl,
+            imageWidth: map.imageWidth,
+            imageHeight: map.imageHeight,
+            units: [
+              {
+                zoneCode: draft.zoneCode,
+                unitCode: draft.unitCode,
+                saleStatus: draft.saleStatus,
+                polygonJson: JSON.stringify(draft.points),
+              },
+            ],
+          }),
+        }
+      );
+
+      const saved = result?.units?.[0];
+
+      if (!saved?.id) {
+        throw new Error(
+          "Backend chưa trả ID căn đã lưu."
+        );
+      }
+
+      // Đã lưu vào TiDB: bỏ bản nháp tương ứng.
+      setDrafts((old) =>
+        old.filter((item) => item.id !== draft.id)
+      );
+
+      const refreshed = await refreshDatabase();
+
+      if (!refreshed) {
+        throw new Error(
+          "Căn đã lưu nhưng chưa tải lại được danh sách."
+        );
+      }
+
+      // Tự mở hồ sơ căn vừa được lưu.
+      const opened = await selectSaved(saved, {
+        bypassUnsavedWarning: true,
+      });
+
+      if (opened) {
+        setNotice(
+          "Đã lưu căn vào TiDB. Bạn có thể chỉnh sửa thông tin, " +
+          "giá bán, tải ảnh và chọn phân khu trong các tab bên phải."
+        );
+      }
+    } catch (err) {
+      setError(
+        `Không hoàn tất lưu/mở căn: ${err.message}. ` +
+        "Nếu vừa mất kết nối, hãy bấm Làm mới để kiểm tra " +
+        "căn đã lưu trước khi thử lưu lại."
+      );
+    } finally {
+      setSavingDrafts(false);
+    }
+  }
   function updateDraft() {
     if (
       !pendingDrafts.some(
@@ -1844,7 +1915,7 @@ export default function AgentPage() {
                     }
                     onClick={finishPolygon}
                   >
-                    Hoàn tất vùng căn
+                    Hoàn tất & lưu căn
                   </button>
                 </div>
 

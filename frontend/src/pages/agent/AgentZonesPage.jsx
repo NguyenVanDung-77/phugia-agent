@@ -18,7 +18,6 @@ import { api } from "../../api/client";
 import PageLayout from "../../components/PageLayout";
 import { parsePoints } from "../../components/MapCanvas";
 
-const PLAN_ID = 1;
 
 const ZONE_CODES = [
   "RUBY",
@@ -648,15 +647,19 @@ export default function AgentZonesPage() {
   useEffect(() => {
     let active = true;
 
-    Promise.all([
-      api(
-        `/api/public/master-plans/${PLAN_ID}/map`
-      ),
+    api("/api/public/master-plans")
+      .then((plans) => {
+        const plan = Array.isArray(plans) ? plans[0] : null;
 
-      api(
-        `/api/agent/master-plans/${PLAN_ID}/units`
-      ),
-    ])
+        if (!plan?.id) {
+          throw new Error("TiDB chưa có mặt bằng đang hoạt động.");
+        }
+
+        return Promise.all([
+          api(`/api/public/master-plans/${plan.id}/map`),
+          api(`/api/agent/master-plans/${plan.id}/units`),
+        ]);
+      })
       .then(([data, units]) => {
         if (!active) return;
 
